@@ -94,18 +94,18 @@ public class ODataBatchUtilitiesTest {
   
   @Test
   public void testChangeSetNeg() throws URISyntaxException{
-    ODataClient client = ODataClientBuilder.createClient();
-    URI uri = new URI("test");
-    ODataBatchRequest req = new ODataBatchRequestImpl(client, uri);;
-    ODataChangesetResponseItem expectedResItem = new ODataChangesetResponseItem(true);
-    ODataChangesetImpl change = new ODataChangesetImpl(req , expectedResItem, new ODataBatchRequestContext());
-    assertNotNull(change);
-    ODataBatchableRequest request = new ODataInvokeRequestImpl<ClientInvokeResult>(
-        client, ClientInvokeResult.class, HttpMethod.GET, uri);
-    change.addRequest(request);
-    assertNotNull(change.getBodyStreamWriter());
-    change.close();
     Assertions.assertThrows(IllegalArgumentException.class, () -> {
+      ODataClient client = ODataClientBuilder.createClient();
+      URI uri = new URI("test");
+      ODataBatchRequest req = new ODataBatchRequestImpl(client, uri);;
+      ODataChangesetResponseItem expectedResItem = new ODataChangesetResponseItem(true);
+      ODataChangesetImpl change = new ODataChangesetImpl(req , expectedResItem, new ODataBatchRequestContext());
+      assertNotNull(change);
+      ODataBatchableRequest request = new ODataInvokeRequestImpl<ClientInvokeResult>(
+          client, ClientInvokeResult.class, HttpMethod.GET, uri);
+      change.addRequest(request);
+      assertNotNull(change.getBodyStreamWriter());
+      change.close();
       change.closeItem();
     });
   }
