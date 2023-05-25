@@ -23,11 +23,13 @@ import org.apache.olingo.client.api.communication.request.retrieve.ODataEntityRe
 import org.apache.olingo.client.api.communication.response.ODataRetrieveResponse;
 import org.apache.olingo.client.api.domain.ClientEntity;
 import org.apache.olingo.commons.api.edm.EdmPrimitiveTypeException;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assume.assumeTrue;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
+
+import org.apache.olingo.commons.api.format.ContentType;
+import org.junit.jupiter.api.Test;
 
 
 public class JSONFormatConformanceTestITCase extends AbstractParamTecSvcITCase  {
@@ -43,7 +45,8 @@ public class JSONFormatConformanceTestITCase extends AbstractParamTecSvcITCase  
    */
   @Test
   public void item1() throws EdmPrimitiveTypeException {
-    assumeTrue("json conformance test with content type", isJson());
+    contentType = ContentType.JSON;
+    assumeTrue(isJson(), "json conformance test with content type");
     final EdmEnabledODataClient edmClient = getEdmEnabledClient();
     Map<String, Object> segmentValues = new LinkedHashMap<String, Object>();
     segmentValues.put("PropertyInt16", 1);
@@ -55,7 +58,7 @@ public class JSONFormatConformanceTestITCase extends AbstractParamTecSvcITCase  
 
     // request format (via Accept header) is set to minimal by default
     //FIXME: set format to minimal?
-    assertEquals("application/json", req.getAccept());  
+    assertEquals("application/json;odata.metadata=minimal", req.getAccept());
 
     final ODataRetrieveResponse<ClientEntity> res = req.execute();
 

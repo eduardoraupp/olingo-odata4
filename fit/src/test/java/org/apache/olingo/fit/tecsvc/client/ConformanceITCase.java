@@ -35,11 +35,11 @@ import org.apache.olingo.commons.api.edm.FullQualifiedName;
 import org.apache.olingo.commons.api.format.ContentType;
 import org.apache.olingo.commons.api.http.HttpHeader;
 import org.apache.olingo.commons.api.http.HttpStatusCode;
-import static org.junit.Assert.assertEquals;
-import org.junit.Test;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assume.assumeTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 /**
  * The test cases in this class are inspired by client conformance criteria defined in the <a
@@ -84,7 +84,8 @@ public class ConformanceITCase extends AbstractParamTecSvcITCase {
    */
   @Test
   public void checkClientWithPayloadHeader() {
-    assumeTrue("json conformance test with content type", isJson());
+    contentType = ContentType.JSON;
+    assumeTrue(isJson(), "json conformance test with content type");
 
     ClientEntity newEntity = getFactory().newEntity(ET_ALL_PRIM);
     newEntity.getProperties().add(getFactory().newPrimitiveProperty(PROPERTY_INT64,
@@ -106,10 +107,12 @@ public class ConformanceITCase extends AbstractParamTecSvcITCase {
 
     // check for Content-Type
     assertEquals(
-        ContentType.APPLICATION_JSON.toContentTypeString(),
+            ContentType.create(ContentType.JSON, ContentType.PARAMETER_ODATA_METADATA,
+                    ContentType.VALUE_ODATA_METADATA_MINIMAL),
         createRequest.getHeader(HttpHeader.CONTENT_TYPE));
     assertEquals(
-        ContentType.APPLICATION_JSON.toContentTypeString(),
+            ContentType.create(ContentType.JSON, ContentType.PARAMETER_ODATA_METADATA,
+                    ContentType.VALUE_ODATA_METADATA_MINIMAL),
         createRequest.getContentType());
 
     final ODataEntityCreateResponse<ClientEntity> createResponse = createRequest.execute();
@@ -230,7 +233,7 @@ public class ConformanceITCase extends AbstractParamTecSvcITCase {
    */
   @Test
   public void supportMetadataMinimal() {
-    assumeTrue("format should be json", isJson());
+    assumeTrue(isJson(), "format should be json");
     ODataClient client = getClient();
     final URIBuilder uriBuilder = client.newURIBuilder(SERVICE_URI)
             .appendEntitySetSegment(ES_TWO_PRIM)
@@ -245,7 +248,7 @@ public class ConformanceITCase extends AbstractParamTecSvcITCase {
     assertEquals("application/json;odata.metadata=minimal", req.getAccept());
 
     final ODataRetrieveResponse<ClientEntity> res = req.execute();
-    assertTrue(res.getContentType().startsWith("application/json; odata.metadata=minimal"));
+    assertTrue(res.getContentType().startsWith("application/json;odata.metadata=minimal"));
 
     assertNotNull(res.getBody());
   }

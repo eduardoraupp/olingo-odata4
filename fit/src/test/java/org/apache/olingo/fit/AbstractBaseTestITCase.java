@@ -20,10 +20,10 @@ package org.apache.olingo.fit;
 
 import java.io.IOException;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import org.apache.catalina.LifecycleException;
 import org.apache.commons.io.IOUtils;
@@ -31,8 +31,8 @@ import org.apache.olingo.client.api.ODataClient;
 import org.apache.olingo.fit.server.TomcatTestServer;
 import org.apache.olingo.server.tecsvc.TechnicalServlet;
 import org.apache.olingo.server.tecsvc.async.TechnicalStatusMonitorServlet;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 
 public abstract class AbstractBaseTestITCase {
 
@@ -40,7 +40,7 @@ public abstract class AbstractBaseTestITCase {
 
   private static TomcatTestServer server;
 
-  @BeforeClass
+  @BeforeAll
   public static void init()
       throws LifecycleException, IOException, 
           InstantiationException, IllegalAccessException, 
@@ -55,7 +55,7 @@ public abstract class AbstractBaseTestITCase {
         .start();
   }
 
-  @AfterClass
+  @AfterAll
   public static void cleanUp() throws LifecycleException {
     server.invalidateAllSessions();
   }
