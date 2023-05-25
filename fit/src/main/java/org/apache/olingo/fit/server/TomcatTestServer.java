@@ -249,9 +249,6 @@ public class TomcatTestServer {
       WebappLoader webappLoader = new WebappLoader();
       WebappClassLoaderBase webappClassLoaderBase = new WebappClassLoader(Thread.currentThread().getContextClassLoader());
       webappLoader.setLoaderInstance(webappClassLoaderBase);
-      //StandardManager manager = new StandardManager();
-      //manager.setPathname("session.txt");
-      //context.setManager(manager);
       context.setLoader(webappLoader);
       LOG.info("Webapp {} at context {}.", webAppDir.getName(), contextPath);
 
@@ -337,7 +334,7 @@ public class TomcatTestServer {
 
     private Context getContext() {
       if (baseContext == null) {
-        baseContext = tomcat.addContext("/odata-server-tecsvc/odata.svc", baseDir.getAbsolutePath());
+        baseContext = tomcat.addContext("", baseDir.getAbsolutePath());
        /* PersistentManager manager = new PersistentManager();
         manager.setStore(new FileStore());
         baseContext.setManager(manager);
