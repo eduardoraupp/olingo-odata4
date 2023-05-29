@@ -84,7 +84,7 @@ public class BasicAsyncITCase extends AbstractBaseTestITCase {
     HttpURLConnection statusRequest = getRequest(new URL(respondUri), Collections.<String, String>emptyMap());
     StringHelper.Stream statusBody = StringHelper.toStream(statusRequest.getInputStream());
     Map<String, List<String>> statusHeaderFields = statusRequest.getHeaderFields();
-    assertEquals("HTTP/1.1 202 Accepted", statusHeaderFields.get(null).get(0));
+    assertEquals("HTTP/1.1 202", statusHeaderFields.get(null).get(0));
     assertEquals(0, statusBody.byteLength());
 
     // get async response (now finished)
@@ -128,7 +128,7 @@ public class BasicAsyncITCase extends AbstractBaseTestITCase {
     HttpURLConnection statusRequest = getRequest(new URL(respondUri), Collections.<String, String>emptyMap());
     StringHelper.Stream statusBody = StringHelper.toStream(statusRequest.getInputStream());
     Map<String, List<String>> statusHeaderFields = statusRequest.getHeaderFields();
-    assertEquals("HTTP/1.1 202 Accepted", statusHeaderFields.get(null).get(0));
+    assertEquals("HTTP/1.1 202", statusHeaderFields.get(null).get(0));
     assertEquals(0, statusBody.byteLength());
 
     // get async response (now finished)
