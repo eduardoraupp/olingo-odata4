@@ -34,7 +34,9 @@ import org.apache.olingo.server.api.ODataRequest;
 import org.apache.olingo.server.api.serializer.CustomContentTypeSupport;
 import org.apache.olingo.server.api.serializer.RepresentationType;
 import org.apache.olingo.server.api.uri.queryoption.FormatOption;
+
 import org.junit.Test;
+
 
 public class ContentNegotiatorTest {
 
