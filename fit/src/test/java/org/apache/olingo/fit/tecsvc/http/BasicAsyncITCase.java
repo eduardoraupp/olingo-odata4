@@ -94,10 +94,10 @@ public class BasicAsyncITCase extends AbstractBaseTestITCase {
     Map<String, List<String>> resultHeaderFields = result.getHeaderFields();
     String resBody = resultBody.asString();
 
-    assertEquals("HTTP/1.1 200 OK", resultHeaderFields.get(null).get(0));
+    assertEquals("HTTP/1.1 200", resultHeaderFields.get(null).get(0));
     assertEquals(1007, resultBody.byteLength());
     contains(resBody,
-        "HTTP/1.1 200 OK",
+        "HTTP/1.1 200",
         "OData-Version: 4.0",
         "Content-Length: 605",
         "\"@odata.context\":\"$metadata#ESAllPrim/$entity\"",
@@ -136,10 +136,10 @@ public class BasicAsyncITCase extends AbstractBaseTestITCase {
     StringHelper.Stream resultBody = StringHelper.toStream(result.getInputStream());
     Map<String, List<String>> resultHeaderFields = result.getHeaderFields();
     String resBody = resultBody.asString();
-    assertEquals("HTTP/1.1 200 OK", resultHeaderFields.get(null).get(0));
+    assertEquals("HTTP/1.1 200", resultHeaderFields.get(null).get(0));
     assertEquals(2321, resultBody.byteLength());
     contains(resBody,
-        "HTTP/1.1 200 OK",
+        "HTTP/1.1 200",
         "OData-Version: 4.0",
         "Content-Length: 605",
         "\"@odata.context\":\"$metadata#ESAllPrim/$entity\"",
