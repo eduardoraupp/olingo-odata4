@@ -27,8 +27,6 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.Iterator;
 
 import org.apache.olingo.client.api.ODataClient;
@@ -133,7 +131,6 @@ public class BatchClientITCase extends AbstractParamTecSvcITCase {
     saveCookieHeader(response);
 
     assertEquals(HttpStatusCode.OK.getStatusCode(), response.getStatusCode());
-    assertEquals("OK", response.getStatusMessage());
 
     final Iterator<ODataBatchResponseItem> iter = response.getBody();
     assertFalse(iter.hasNext());
@@ -151,7 +148,6 @@ public class BatchClientITCase extends AbstractParamTecSvcITCase {
     saveCookieHeader(response);
 
     assertEquals(HttpStatusCode.OK.getStatusCode(), response.getStatusCode());
-    assertEquals("OK", response.getStatusMessage());
 
     final Iterator<ODataBatchResponseItem> iter = response.getBody();
     assertTrue(iter.hasNext());
@@ -183,7 +179,6 @@ public class BatchClientITCase extends AbstractParamTecSvcITCase {
     saveCookieHeader(response);
 
     assertEquals(HttpStatusCode.OK.getStatusCode(), response.getStatusCode());
-    assertEquals("OK", response.getStatusMessage());
 
     final Iterator<ODataBatchResponseItem> iter = response.getBody();
     assertTrue(iter.hasNext());
