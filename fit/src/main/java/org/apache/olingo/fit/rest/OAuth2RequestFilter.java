@@ -18,7 +18,6 @@
  */
 package org.apache.olingo.fit.rest;
 
-import jakarta.inject.Inject;
 import jakarta.ws.rs.container.ContainerRequestContext;
 import jakarta.ws.rs.ext.Provider;
 
@@ -30,7 +29,6 @@ import org.apache.cxf.rs.security.oauth2.filters.OAuthRequestFilter;
 @Provider
 public class OAuth2RequestFilter extends OAuthRequestFilter {
 
-  @Inject
   public OAuth2RequestFilter(JoseJwtConsumer joseJwtConsumer, OAuth2Provider oAuth2Provider,
                              MessageContext messageContext) {
     super.setJwtTokenConsumer(joseJwtConsumer);

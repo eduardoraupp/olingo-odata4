@@ -51,9 +51,9 @@
             <value>bar</value>
           </list>
         </property>
-        <property name="dataProvider" ref="oauthProvider"/>
-        <property name="jwtTokenConsumer" ref="jwtTokenConsumer"/>
-        <property name="messageContext" ref="messageContext" />
+        <constructor-arg index="0" ref="jwtTokenConsumer"/>
+        <constructor-arg index="1" ref="oauthProvider"/>
+        <constructor-arg index="2" ref="messageContext"/>
       </bean>
       <bean class="org.apache.olingo.fit.rest.ServiceNameResponseFilter"/>
     </jaxrs:providers>
